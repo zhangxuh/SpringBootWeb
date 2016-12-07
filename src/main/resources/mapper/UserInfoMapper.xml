@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cn.model.mapper.UserInfoMapper">
+
+    <resultMap id="BaseResultMap" type="com.cn.model.UserInfo">
+        <id column="user_id" property="userId" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <select id="findByUserName" resultMap="BaseResultMap">
+        select * from user_info where id = #{id}
+    </select>
+</mapper>

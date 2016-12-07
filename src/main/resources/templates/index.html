@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="UTF-8"/>
+    <title></title>
+</head>
+<body>
+    欢迎页
+    <input type="button" value="登陆" th:hidden="${username}" onclick=""/>
+    <input type="button" value="注册" th:hidden="${username}"/>
+    <input type="button" value="登出" th:hidden="!${username}"/>
+    <label th:text="${username}"></label>
+    <!--<script src="webjars/jquery/2.1.4/jquery.js"></script>-->
+    <script >
+        function login(){
+            location.href='/login';
+        }
+        function logout(){
+            location.href='/logout';
+        }
+    </script>
+</body>
+</html>
