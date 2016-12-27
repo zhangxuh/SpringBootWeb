@@ -4,6 +4,7 @@ import org.apache.log4j.Logger;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -64,7 +65,15 @@ public class UserInfoController {
         return "index";
     }
     @RequestMapping(value = "userList",method = RequestMethod.GET)
+    @RequiresPermissions("userInfo:list")
     public String userList(){
+        System.out.println(">>>>>>>>>>>>userList");
+        return "index";
+    }
+    @RequestMapping(value = "userEdit",method = RequestMethod.GET)
+    @RequiresPermissions("userInfo:edit")
+    public String userEdit(){
+        System.out.println(">>>>>>>>>>>>userEdit");
         return "index";
     }
 }

@@ -3,6 +3,7 @@ package com.cn.config.shiro;
 import org.apache.log4j.Logger;
 import org.apache.shiro.cache.ehcache.EhCacheManager;
 import org.apache.shiro.mgt.SecurityManager;
+import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +20,7 @@ import java.util.Map;
  * 需要定义一系列关于URL的规则和访问权限
  * Created by Administrator on 2016/11/23.
  */
-//@Configuration
+@Configuration
 public class ShiroConfiguration {
     public final static Logger logger=Logger.getLogger(ShiroConfiguration.class);
     @Autowired
@@ -96,5 +97,17 @@ public class ShiroConfiguration {
         authcFilter.setLoginUrl("/doLogin");
         authcFilter.setEnabled(true);
         return authcFilter;
+    }
+    /**
+     *  开启shiro aop注解支持.
+     *  使用代理方式;所以需要开启代码支持;
+     * @param securityManager
+     * @return
+     */
+    @Bean
+    public AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor(SecurityManager securityManager){
+        AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor = new AuthorizationAttributeSourceAdvisor();
+        authorizationAttributeSourceAdvisor.setSecurityManager(securityManager);
+        return authorizationAttributeSourceAdvisor;
     }
 }

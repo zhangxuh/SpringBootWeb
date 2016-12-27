@@ -33,6 +33,7 @@ public class MyShiroRealm extends AuthorizingRealm{
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
         System.out.println("权限配置-->MyShiroRealm.doGetAuthorizationInfo()");
         SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
+        authorizationInfo.addStringPermission("userInfo:list");
         return authorizationInfo;
     }
 
